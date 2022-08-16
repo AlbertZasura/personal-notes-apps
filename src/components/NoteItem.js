@@ -3,7 +3,7 @@ import { showFormattedDate } from "../utils";
 import Button from "./Button";
 import NoteContent from "./NoteContent";
 
-function NoteItem({ title, body, createdAt, onDelete, onArchive }) {
+function NoteItem({ id, title, body, createdAt, onDelete, onArchive }) {
   return (
     <div className="note-item">
       <NoteContent
@@ -12,8 +12,8 @@ function NoteItem({ title, body, createdAt, onDelete, onArchive }) {
         createdAt={showFormattedDate(createdAt)}
       />
       <div className="note-item__action">
-        <Button name={"Delete"} actionHandler={onDelete} />
-        <Button name={"Archive"} actionHandler={onArchive} />
+        <Button id={id} name={"Delete"} actionHandler={onDelete} />
+        <Button id={id} name={"Archive"} actionHandler={onDelete} />
       </div>
     </div>
   );
