@@ -13,8 +13,8 @@ function NoteItem({ id, title, body, createdAt, onChange, onDelete, onArchieve }
           createdAt={showFormattedDate(createdAt)}
         />
         <div className="note-item__action">
-          <Button id={id} name={"Delete"} style={"delete"} actionHandler={onDelete} />
-          <Button id={id} name={"Pindahkan"} style={"archive"} actionHandler={onChange} />
+          <Button id={id} name={"Delete"} styleClass={"delete"} actionHandler={onDelete} />
+          <Button id={id} name={"Pindahkan"} styleClass={"archive"} actionHandler={onChange} />
         </div>
       </div>
     );
@@ -27,8 +27,8 @@ function NoteItem({ id, title, body, createdAt, onChange, onDelete, onArchieve }
           createdAt={showFormattedDate(createdAt)}
         />
         <div className="note-item__action">
-          <Button id={id} name={"Delete"} style={"delete"} actionHandler={onDelete} />
-          <Button id={id} name={"Arsipkan"} style={"archive"} actionHandler={onArchieve} />
+          <Button id={id} name={"Delete"} styleClass={"delete"} actionHandler={onDelete} />
+          <Button id={id} name={"Arsipkan"} styleClass={"archive"} actionHandler={onArchieve} />
         </div>
       </div>
     );

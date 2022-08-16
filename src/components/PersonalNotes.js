@@ -13,6 +13,7 @@ class PersonalNotes extends React.Component {
 
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onArchieveHandler = this.onArchieveHandler.bind(this);
+    this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
   }
 
   onDeleteHandler(id) {
@@ -31,12 +32,29 @@ class PersonalNotes extends React.Component {
     });
   }
 
+  onAddNoteHandler({ title, body }) {
+    this.setState((prevState) => {
+      return {
+        notes: [
+          ...prevState.notes,
+          {
+            id: +new Date(),
+            title: title,
+            body: body,
+            archived: false,
+            createdAt: new Date(),
+          },
+        ],
+      };
+    });
+  }
+
   render() {
     return (
       <>
         <Navbar />
         <div className="note-app__body">
-          <NoteInput />
+          <NoteInput addNote={this.onAddNoteHandler} />
           <NoteContainer
             title={"Catatan Aktif"}
             notes={this.state.notes.filter((note) => note.archived === false)}

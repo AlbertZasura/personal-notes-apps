@@ -1,9 +1,9 @@
 import React from "react";
 
-function Button({ name, actionHandler, id, style }) {
+function Button({ name, actionHandler, id, styleClass }) {
   return (
     <button
-      className={`note-item__${style.toLowerCase()}-button`}
+      className={`note-item__${styleClass}-button`}
       onClick={() => actionHandler(id)}
     >
       {name}
