@@ -14,11 +14,13 @@ class NoteInput extends React.Component {
   }
 
   onTitleChangeHandler(event) {
-    this.setState(() => {
-      return {
-        title: event.target.value,
-      };
-    });
+    if (event.target.value.length < 51) {
+      this.setState(() => {
+        return {
+          title: event.target.value,
+        };
+      });
+    }
   }
 
   onBodyChangeHandler(event) {
@@ -39,11 +41,12 @@ class NoteInput extends React.Component {
       <div className="note-input">
         <h2>Buat catatan</h2>
         <form onSubmit={this.onSubmitHandler}>
-          <p className="note-input__title__char-limit">Sisa karakter: 50</p>
+          <p className="note-input__title__char-limit">Sisa karakter: {50-this.state.title.length}</p>
           <input
             className="note-input__title"
             type="text"
             placeholder="Ini adalah judul ..."
+            value={this.state.title}
             onChange={this.onTitleChangeHandler}
             required
           />
