@@ -12,12 +12,25 @@ class PersonalNotes extends React.Component {
     };
 
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
+    this.onArchieveHandler = this.onArchieveHandler.bind(this);
   }
 
   onDeleteHandler(id) {
     const notes = this.state.notes.filter((note) => note.id !== id);
     this.setState({ notes });
   }
+
+  onArchieveHandler(id) {
+    const notes = this.state.notes.filter((note) => note.id !== id);
+    let archivedNote = this.state.notes.filter((note) => note.id === id);
+    archivedNote[0].archived = !archivedNote[0].archived;
+    this.setState(() => {
+      return {
+        notes: [...notes, ...archivedNote],
+      };
+    });
+  }
+
   render() {
     return (
       <>
@@ -26,13 +39,15 @@ class PersonalNotes extends React.Component {
           <NoteInput />
           <NoteContainer
             title={"Catatan Aktif"}
-            notes={this.state.notes}
+            notes={this.state.notes.filter((note) => note.archived === false)}
             onDelete={this.onDeleteHandler}
+            onArchieve={this.onArchieveHandler}
           />
           <NoteContainer
             title={"Arsip"}
-            notes={this.state.notes}
+            notes={this.state.notes.filter((note) => note.archived === true)}
             onDelete={this.onDeleteHandler}
+            onChange={this.onArchieveHandler}
           />
         </div>
       </>
